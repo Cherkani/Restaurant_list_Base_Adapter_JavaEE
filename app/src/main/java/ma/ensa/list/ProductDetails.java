@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -35,12 +36,36 @@ public class ProductDetails extends AppCompatActivity {
         ImageView imagedetail = findViewById(R.id.imagedetail);
         TextView detaisIngreddetail = findViewById(R.id.detaisIngreddetail);
         TextView descriptiondetail = findViewById(R.id.decriptiondetail);
-        TextView preparationdetail = findViewById(R.id.preparations);
+        TextView preparations = findViewById(R.id.preparation);
 
         nomdetail.setText(nom);
         detaisIngreddetail.setText(detaisIngred);
         descriptiondetail.setText(description);
         imagedetail.setImageResource((int)image);
-        preparationdetail.setText(preparation);
+        preparations.setText(preparation);
+    }
+    public void shareOnWhatsApp(View view) {
+        TextView nomdetail = findViewById(R.id.nomdetail);
+        TextView descriptiondetail = findViewById(R.id.decriptiondetail);
+        String nom = nomdetail.getText().toString();
+        String description = descriptiondetail.getText().toString();
+
+        // Texte que vous souhaitez partager
+        String textToShare = "Check out this delicious pizza recipe: " + nom + "\nDescription: " + description;
+
+        // Créez un intent pour partager sur WhatsApp
+        Intent whatsappIntent = new Intent(Intent.ACTION_SEND);
+        whatsappIntent.setType("text/plain");
+        whatsappIntent.setPackage("com.whatsapp"); // Nom du package WhatsApp
+
+        // Ajoutez le texte à partager à l'intent
+        whatsappIntent.putExtra(Intent.EXTRA_TEXT, textToShare);
+
+        try {
+            startActivity(whatsappIntent);
+        } catch (android.content.ActivityNotFoundException ex) {
+            // Gérer l'erreur si WhatsApp n'est pas installé
+            // Vous pouvez utiliser une autre méthode de partage ici
+        }
     }
 }

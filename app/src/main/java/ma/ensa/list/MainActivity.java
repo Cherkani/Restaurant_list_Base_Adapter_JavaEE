@@ -2,14 +2,22 @@ package ma.ensa.list;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import ma.ensa.list.adapter.FruitAdapter;
 import ma.ensa.list.adapter.ProduitAdapter;
+import ma.ensa.list.beans.Fruit;
 import ma.ensa.list.beans.Produit;
+import ma.ensa.list.service.FruitService;
 import ma.ensa.list.service.ProduitService;
 
 public class MainActivity extends AppCompatActivity {
@@ -67,4 +75,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 }
